@@ -8,15 +8,14 @@
   <style>
     :root {
       --bg-dark: #0b1f1a;
-      --bg-mid: #123c2d;
-      --green: #1c6b4d;
-      --gold: #ffd700;
-      --cyan: #00ffcc;
+      --bg-mid:  #123c2d;
+      --green:   #1c6b4d;
+      --gold:    #d4af37;
+      --cyan:    #00ffcc;
+      --red:     #ff4d4d;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -27,7 +26,7 @@
     }
 
     header {
-      padding: 1.2rem 1rem;
+      padding: 1.1rem 1rem;
       background: #08251d;
       border-bottom: 3px solid var(--gold);
       text-align: center;
@@ -35,121 +34,128 @@
 
     h1 {
       color: var(--gold);
-      margin: 0.3rem 0;
-      font-size: clamp(1.6rem, 6vw, 2.4rem);
+      margin: 0.2rem 0;
+      font-size: clamp(1.9rem, 5.5vw, 2.6rem);
     }
 
     header p {
-      margin: 0.4rem 0 0;
+      margin: 0.3rem 0 0;
       opacity: 0.9;
-      font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+      font-size: clamp(1rem, 3.2vw, 1.15rem);
     }
 
     .container {
       display: flex;
-      flex-direction: row;
-      gap: 1.2rem;
-      padding: 1.2rem;
-      max-width: 1200px;
+      flex-wrap: nowrap;
+      gap: 14px;
+      padding: 1.1rem;
+      max-width: 1180px;
       margin: 0 auto;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .section {
-      flex: 1;
-      background: rgba(0,0,0,0.35);
-      border-radius: 16px;
-      padding: 1rem;
+      flex: 1 1 48%;
+      min-width: 0;
+      background: rgba(0,0,0,0.42);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
       border: 2px solid var(--gold);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(3px);
     }
 
     .section h2 {
       color: var(--gold);
       text-align: center;
-      margin: 0.6rem 0 1rem;
-      font-size: clamp(1.3rem, 5vw, 1.7rem);
+      margin: 0.5rem 0 1rem;
+      font-size: clamp(1.35rem, 4vw, 1.65rem);
     }
 
     .card {
-      margin: 0.6rem 0;
-      padding: 0.9rem 0.7rem;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.06);
+      margin: 0.5rem 0;
+      padding: 0.75rem 0.6rem;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
       text-align: center;
-      border: 1px solid rgba(255,215,0,0.12);
+      border: 1px solid rgba(212,175,55,0.15);
+      font-size: 1rem;
     }
 
     .present {
-      font-size: clamp(1.7rem, 6.5vw, 2.4rem);
+      font-size: clamp(1.55rem, 4.8vw, 2.1rem);
       font-weight: bold;
       color: var(--gold);
       line-height: 1.15;
     }
 
     .next {
-      font-size: clamp(1.25rem, 5vw, 1.6rem);
+      font-size: clamp(1.2rem, 4vw, 1.55rem);
       font-weight: 600;
       color: #ffeb99;
     }
 
     .normal {
-      font-size: clamp(0.95rem, 3.8vw, 1.1rem);
-      color: #e0e0e0;
+      font-size: clamp(0.94rem, 3.3vw, 1.08rem);
+      color: #e8e8e8;
     }
 
     .countdown {
-      margin-top: 0.5rem;
-      font-size: clamp(1.1rem, 4.2vw, 1.35rem);
+      margin-top: 0.45rem;
+      font-size: clamp(1.15rem, 4vw, 1.4rem);
       color: var(--cyan);
       font-family: monospace;
       letter-spacing: 1px;
     }
 
     .ended {
-      color: #ff4d4d !important;
-      opacity: 0.75;
+      color: var(--red) !important;
+      opacity: 0.8;
     }
 
     footer {
-      margin: 2rem 1rem 1.5rem;
+      margin: 1.8rem 1rem 1.4rem;
       text-align: center;
-      font-size: 0.82rem;
-      opacity: 0.65;
+      font-size: 0.84rem;
+      opacity: 0.7;
     }
 
-    /* ────────────────────────────────────────
-       Mobile-first adjustments
-    ──────────────────────────────────────── */
+    /* ───────────────────────────────────────────────
+       Mobile adjustments — keep side-by-side, just tighter
+    ─────────────────────────────────────────────── */
     @media (max-width: 820px) {
       .container {
-        flex-direction: column;
-        gap: 1.1rem;
-        padding: 1rem;
-      }
-
-      .section {
+        gap: 10px;
         padding: 0.9rem;
       }
-
+      .section {
+        padding: 0.8rem;
+      }
       .card {
-        padding: 0.8rem 0.6rem;
+        padding: 0.7rem 0.55rem;
+        margin: 0.45rem 0;
       }
     }
 
-    @media (max-width: 500px) {
-      header {
-        padding: 1rem 0.8rem;
-      }
+    @media (max-width: 520px) {
+      h1             { font-size: 2.1rem; }
+      header p       { font-size: 1rem;   }
 
-      .present   { font-size: 1.95rem; }
-      .next      { font-size: 1.45rem; }
-      .normal    { font-size: 1rem;    }
-      .countdown { font-size: 1.2rem;  }
+      .section h2    { font-size: 1.35rem; margin-bottom: 0.8rem; }
+      .present       { font-size: 1.65rem; }
+      .next          { font-size: 1.3rem;  }
+      .normal        { font-size: 0.97rem; }
+      .countdown     { font-size: 1.22rem; }
 
-      .card {
-        font-size: 0.96rem;
-        padding: 0.75rem 0.5rem;
-      }
+      .card          { font-size: 0.95rem; padding: 0.65rem 0.5rem; }
+      .container     { gap: 8px; padding: 0.8rem; }
+    }
+
+    /* Hide scrollbar for cleaner look */
+    .container::-webkit-scrollbar { display: none; }
+    .container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
@@ -216,10 +222,12 @@ function parseDate(dateStr, timeStr) {
 
 function format(ms) {
   if (ms <= 0) return "00:00:00";
-  const h = Math.floor(ms / (1000*60*60));
-  const m = Math.floor((ms % (1000*60*60)) / (1000*60));
-  const s = Math.floor((ms % (1000*60)) / 1000);
-  return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+  const h = Math.floor(ms / 3600000);
+  const m = Math.floor((ms % 3600000) / 60000);
+  const s = Math.floor((ms % 60000) / 1000);
+  return h.toString().padStart(2,'0') + ":" +
+         m.toString().padStart(2,'0') + ":" +
+         s.toString().padStart(2,'0');
 }
 
 function render() {
@@ -235,13 +243,13 @@ function render() {
 
   data.forEach((row, i) => {
     const [date, sehriTime, iftarTime] = row;
-    const sehriDate  = parseDate(date, sehriTime);
-    const iftarDate  = parseDate(date, iftarTime);
+    const sehriDate = parseDate(date, sehriTime);
+    const iftarDate = parseDate(date, iftarTime);
 
     const sehriDiff = sehriDate - now;
     const iftarDiff = iftarDate - now;
 
-    const obj = { ramadan: i+1, date, diff:0 };
+    const obj = { ramadan: i+1, date };
 
     if (sehriDiff > 0) {
       activeSehri.push({ ...obj, time: sehriTime, diff: sehriDiff });
@@ -256,8 +264,8 @@ function render() {
     }
   });
 
-  function buildSection(activeList, endedList, container) {
-    activeList.forEach((item, idx) => {
+  function buildSection(active, ended, container) {
+    active.forEach((item, idx) => {
       const card = document.createElement("div");
       card.className = "card";
 
@@ -265,27 +273,25 @@ function render() {
       if (idx === 0) cls = "present";
       else if (idx <= 2) cls = "next";
 
-      let countdown = "";
-      if (item.diff <= 12 * 60 * 60 * 1000) {
-        countdown = format(item.diff);
+      let cd = "";
+      if (item.diff <= 12 * 3600000) {
+        cd = `<div class="countdown">${format(item.diff)}</div>`;
       }
 
       card.innerHTML = `
         <div class="${cls}">
           Ramadan ${item.ramadan} – ${item.date} – ${item.time}
         </div>
-        ${countdown ? `<div class="countdown">${countdown}</div>` : ""}
+        ${cd}
       `;
       container.appendChild(card);
     });
 
-    endedList.forEach(item => {
+    ended.forEach(item => {
       const card = document.createElement("div");
       card.className = "card ended";
       card.innerHTML = `
-        <div>
-          Ramadan ${item.ramadan} – ${item.date} – ${item.time}
-        </div>
+        <div>Ramadan ${item.ramadan} – ${item.date} – ${item.time}</div>
         <div class="countdown">00:00:00</div>
       `;
       container.appendChild(card);
