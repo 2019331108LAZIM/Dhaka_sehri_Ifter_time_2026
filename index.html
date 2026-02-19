@@ -11,13 +11,13 @@ body{
     font-family:'Segoe UI',sans-serif;
     background:linear-gradient(to bottom,#0b1f1a,#123c2d,#1c6b4d);
     color:white;
-    text-align:center;
 }
 
 header{
     padding:20px;
     background:#08251d;
     border-bottom:3px solid gold;
+    text-align:center;
 }
 
 h1{
@@ -27,21 +27,25 @@ h1{
 
 .container{
     display:flex;
-    justify-content:space-around;
-    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
     padding:20px;
+    max-width:1200px;
+    margin:auto;
 }
 
 .section{
-    width:45%;
+    flex:1;
     background:rgba(0,0,0,0.35);
     border-radius:15px;
     padding:15px;
     border:2px solid gold;
+    min-width:0;
 }
 
 .section h2{
     color:gold;
+    text-align:center;
 }
 
 .card{
@@ -49,21 +53,22 @@ h1{
     padding:12px;
     border-radius:12px;
     background:rgba(255,255,255,0.05);
+    text-align:center;
 }
 
 .present{
-    font-size:32px;
+    font-size:30px;
     font-weight:bold;
     color:#ffd700;
 }
 
 .next{
-    font-size:24px;
+    font-size:22px;
     font-weight:bold;
 }
 
 .normal{
-    font-size:17px;
+    font-size:16px;
 }
 
 .countdown{
@@ -77,8 +82,39 @@ footer{
     padding:10px;
     font-size:12px;
     opacity:0.7;
+    text-align:center;
+}
+
+/* ✅ MOBILE FIX */
+@media (max-width: 768px){
+
+    .container{
+        flex-direction:column;
+        padding:15px;
+    }
+
+    .section{
+        width:100%;
+    }
+
+    .present{
+        font-size:26px;
+    }
+
+    .next{
+        font-size:20px;
+    }
+
+    .normal{
+        font-size:15px;
+    }
+
+    .countdown{
+        font-size:16px;
+    }
 }
 </style>
+
 </head>
 
 <body>
