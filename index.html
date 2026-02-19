@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramadan 2026 | Dhaka Sehri & Iftar</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(to bottom,#0b1f1a,#123c2d,#1c6b4d);
+    color:white;
+    text-align:center;
+}
+
+header{
+    padding:20px;
+    background:#08251d;
+    border-bottom:3px solid gold;
+}
+
+h1{
+    color:gold;
+    margin:0;
+}
+
+.container{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.section{
+    width:45%;
+    background:rgba(0,0,0,0.35);
+    border-radius:15px;
+    padding:15px;
+    border:2px solid gold;
+}
+
+.section h2{
+    color:gold;
+}
+
+.card{
+    margin:10px 0;
+    padding:12px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.05);
+}
+
+.present{
+    font-size:32px;
+    font-weight:bold;
+    color:#ffd700;
+}
+
+.next{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.normal{
+    font-size:17px;
+}
+
+.countdown{
+    margin-top:6px;
+    font-size:18px;
+    color:#00ffcc;
+}
+
+footer{
+    margin-top:20px;
+    padding:10px;
+    font-size:12px;
+    opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌙 Ramadan 2026 - Dhaka 🌙</h1>
+    <p>Sehri & Iftar Time with Countdown</p>
+</header>
+
+<div class="container">
+    <div class="section">
+        <h2>Sehri (AM)</h2>
+        <div id="sehri"></div>
+    </div>
+
+    <div class="section">
+        <h2>Iftar (PM)</h2>
+        <div id="iftar"></div>
+    </div>
+</div>
+
+<footer>
+Ramadan Kareem | Dhaka, Bangladesh | Made by Lazim
+</footer>
+
+<script>
+const data = [
+["19 Feb 2026","05:12 AM","5:57 PM"],
+["20 Feb 2026","05:11 AM","5:58 PM"],
+["21 Feb 2026","05:11 AM","5:58 PM"],
+["22 Feb 2026","05:10 AM","5:59 PM"],
+["23 Feb 2026","05:09 AM","5:59 PM"],
+["24 Feb 2026","05:08 AM","6:00 PM"],
+["25 Feb 2026","05:08 AM","6:00 PM"],
+["26 Feb 2026","05:07 AM","6:01 PM"],
+["27 Feb 2026","05:06 AM","6:01 PM"],
+["28 Feb 2026","05:05 AM","6:02 PM"],
+["01 Mar 2026","05:04 AM","6:02 PM"],
+["02 Mar 2026","05:04 AM","6:03 PM"],
+["03 Mar 2026","05:03 AM","6:03 PM"],
+["04 Mar 2026","05:02 AM","6:04 PM"],
+["05 Mar 2026","05:01 AM","6:04 PM"],
+["06 Mar 2026","05:00 AM","6:04 PM"],
+["07 Mar 2026","04:59 AM","6:05 PM"],
+["08 Mar 2026","04:58 AM","6:05 PM"],
+["09 Mar 2026","04:57 AM","6:06 PM"],
+["10 Mar 2026","04:56 AM","6:06 PM"],
+["11 Mar 2026","04:56 AM","6:07 PM"],
+["12 Mar 2026","04:55 AM","6:07 PM"],
+["13 Mar 2026","04:54 AM","6:08 PM"],
+["14 Mar 2026","04:53 AM","6:08 PM"],
+["15 Mar 2026","04:52 AM","6:08 PM"],
+["16 Mar 2026","04:51 AM","6:09 PM"],
+["17 Mar 2026","04:50 AM","6:09 PM"],
+["18 Mar 2026","04:49 AM","6:10 PM"],
+["19 Mar 2026","04:48 AM","6:10 PM"],
+];
+
+function parseDate(dateStr,timeStr){
+    return new Date(dateStr+" "+timeStr+" GMT+0600");
+}
+
+function format(ms){
+    if(ms<=0) return "00:00:00";
+    const h=Math.floor(ms/(1000*60*60));
+    const m=Math.floor((ms%(1000*60*60))/(1000*60));
+    const s=Math.floor((ms%(1000*60))/1000);
+    return h.toString().padStart(2,'0')+":"+
+           m.toString().padStart(2,'0')+":"+
+           s.toString().padStart(2,'0');
+}
+
+function render(){
+    const now=new Date();
+    const sehriDiv=document.getElementById("sehri");
+    const iftarDiv=document.getElementById("iftar");
+
+    sehriDiv.innerHTML="";
+    iftarDiv.innerHTML="";
+
+    let activeSehri=[], endedSehri=[];
+    let activeIftar=[], endedIftar=[];
+
+    data.forEach((row,i)=>{
+        const [date,sehriTime,iftarTime]=row;
+
+        const sehriDate=parseDate(date,sehriTime);
+        const iftarDate=parseDate(date,iftarTime);
+
+        const sehriDiff=sehriDate-now;
+        const iftarDiff=iftarDate-now;
+
+        const sehriObj={
+            ramadan:i+1,
+            date,
+            time:sehriTime,
+            diff:sehriDiff
+        };
+
+        const iftarObj={
+            ramadan:i+1,
+            date,
+            time:iftarTime,
+            diff:iftarDiff
+        };
+
+        if(sehriDiff>0) activeSehri.push(sehriObj);
+        else endedSehri.push(sehriObj);
+
+        if(iftarDiff>0) activeIftar.push(iftarObj);
+        else endedIftar.push(iftarObj);
+    });
+
+    function buildSection(activeList, endedList, container){
+
+        activeList.forEach((item,index)=>{
+            const card=document.createElement("div");
+            card.className="card";
+
+            let size="normal";
+            if(index===0) size="present";
+            else if(index<=2) size="next";
+
+            let countdown="";
+            if(item.diff<=12*60*60*1000)
+                countdown=format(item.diff);
+
+            card.innerHTML=`
+            <div class="${size}">
+            Ramadan ${item.ramadan} - ${item.date} - ${item.time}
+            </div>
+            <div class="countdown">${countdown}</div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        endedList.forEach(item=>{
+            const card=document.createElement("div");
+            card.className="card";
+            card.style.color="red";
+
+            card.innerHTML=`
+            <div>
+            Ramadan ${item.ramadan} - ${item.date} - ${item.time}
+            </div>
+            <div class="countdown">00:00:00</div>
+            `;
+
+            container.appendChild(card);
+        });
+    }
+
+    buildSection(activeSehri,endedSehri,sehriDiv);
+    buildSection(activeIftar,endedIftar,iftarDiv);
+}
+
+setInterval(render,1000);
+render();
+</script>
+
+
+
+</body>
+</html>
